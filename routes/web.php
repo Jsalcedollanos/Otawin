@@ -18,6 +18,9 @@ use App\Http\Controllers\PagosController;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+
+
 Route::get('/clientes/index', function () {
     return view('clientes.index');
 });

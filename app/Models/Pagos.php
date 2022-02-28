@@ -9,6 +9,13 @@ class Pagos extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'n_factura','ide','nombre','apellido','metodo_pago','tipo_pago','valor','fecha_fin','estado'
+        'n_factura','ide','nombre','apellido','metodo_pago','tipo_pago','valor','fecha_ini','fecha_fin','estado'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s' ,
+        'updated_at' => 'datetime:Y-m-d H:i:s' ,
+        'fecha_ini' => 'datetime:Y-m-d H:i:s',
+        'fecha_fin' => 'datetime:Y-m-d H:i:s'
     ];
 }

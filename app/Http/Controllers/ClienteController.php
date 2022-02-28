@@ -128,7 +128,7 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        Cliente::find($id)->delete($id);
+        Cliente::findOrFail($id)->delete($id);
         return response()->json([
         'success' => 'Record deleted successfully!'
         ]); 

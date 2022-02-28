@@ -92,7 +92,7 @@ $(document).ready( function () {
             }},
 
             {data:'id', "render": function (data) {
-            return "<button id=\"" + data + "\" type=\"button\" name=\"btnPago\" class=\"btnPago btn btn-primary botonPago\"><span class=\"bi bi-currency-dollar\"></span></button>";
+            return "<button id=\"" + data + "\" type=\"button\" name=\"btnPago\" class=\"btnPago btn btn-primary\"><span class=\"bi bi-currency-dollar\"></span></button>";
             }},
         ]
     });
@@ -240,6 +240,7 @@ $('#editar-cliente').submit(function(e){
         let tipo_pago = $('#tipo_pago').val();
         let valor = $('#valor').val();
         let fecha_fin = $('#fecha_fin').val();
+        let fecha_ini = $('#fecha_ini').val();
         
         $.ajax({
             url: '{{route("pagos.create")}}',
@@ -256,6 +257,7 @@ $('#editar-cliente').submit(function(e){
             apellido:apellidocli,
             metodo_pago:metodo_pago,
             tipo_pago:tipo_pago,
+            fecha_ini:fecha_ini,
             fecha_fin:fecha_fin,
             valor:valor,            
         },

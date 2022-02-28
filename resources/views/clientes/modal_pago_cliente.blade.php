@@ -71,7 +71,7 @@
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Fecha inicio</span>   
-                <input  readonly maxlength="20" id="created_at" name="created_at" class="form-control form-control-lg" type="text" placeholder="" tabindex="3">
+                <input  type="date" maxlength="20" id="fecha_ini" name="fecha_ini" class="form-control form-control-lg" type="text" placeholder="" tabindex="3">
               </div>
 
               <div class="input-group mb-3">

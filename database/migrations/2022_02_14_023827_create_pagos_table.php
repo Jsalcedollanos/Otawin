@@ -22,7 +22,7 @@ class CreatePagosTable extends Migration
             $table->string('metodo_pago',20);
             $table->string('tipo_pago',20);
             $table->decimal('valor',8,3);
-            $table->dateTime('fecha_fin',0);
+            $table->date('fecha_fin');
             $table->string('estado')->default('activo');
             $table->timestamps();
         });

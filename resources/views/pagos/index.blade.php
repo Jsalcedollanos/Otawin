@@ -61,6 +61,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>  
+<script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <!-- Validacion solo numero -->
 
 <script>
@@ -68,7 +69,7 @@ $(document).ready( function () {
     var table = $('#pagos').DataTable({
         "processing": true,
         "serverSide": true,
-        "ajax": "{{route('pagos.index')}}",
+        "ajax": "{{route('pagos.index')}}",     
         "columns": [
             {data: 'id'},
             {data: 'ide'},
@@ -92,10 +93,10 @@ $(document).ready( function () {
             {data:'id', "render": function (data) {
                 var ide = data;
             return "<button  id=\"" + data + "\" type=\"button\" name=\"ver\"  class=\"ver btn btn-info\"> <span class=\"bi bi-eye-fill\"></span></button>";
-            }},
-        
-        ]
+            }},        
+        ]       
     });
+    
 
     /* ELIMINAR PAGO */
     var id_pago;
@@ -137,6 +138,7 @@ $(document).ready( function () {
     var metodo_pago = $('#m_pago').val();
     var valor = $('#val').val();
     var fecha_fin = $('#f_fin').val();
+    var fecha_ini = $('#f_ini').val();
         $.ajax({
             url:"update/"+idp,
             type: 'PUT',
@@ -150,6 +152,7 @@ $(document).ready( function () {
                 nombre:nombrep,
                 apellido:apellidop,
                 fecha_fin:fecha_fin,
+                fecha_ini:fecha_ini,
                 tipo_pago:tipo_pago,
                 metodo_pago:metodo_pago,
                 valor:valor,                
@@ -197,6 +200,7 @@ $(document).ready( function () {
                     $('#t_pago').val(data.tipo_pago),
                     $('#val').val(data.valor),
                     $('#f_fin').val(data.fecha_fin),
+                    $('#f_ini').val(data.fecha_ini),
                     $('#actualizarModal').modal('show');
                 }
             });
@@ -207,4 +211,5 @@ $(document).ready( function () {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 @stop
