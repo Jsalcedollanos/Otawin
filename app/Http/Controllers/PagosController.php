@@ -17,7 +17,7 @@ class PagosController extends Controller
      */
     public function index()
     {
-        $pago = Pagos::select('id','n_factura','ide','nombre','apellido','metodo_pago','tipo_pago','valor','created_at','fecha_fin','estado')->get();
+        $pago = Pagos::select('id','n_factura','ide','nombre','apellido','metodo_pago','tipo_pago','valor','fecha_inicio','fecha_fin','estado')->get();
         return datatables()->of($pago)->toJson();
     }
 
@@ -54,6 +54,12 @@ public function mostrar()
             'ide' => 'required|min:8|max:11',
             'nombre' => 'required|min:3|max:25',
             'apellido' => 'required|min:3|max:30',            
+            'tipo_pago' => 'required',            
+            'metodo_pago' => 'required',            
+            'valor' => 'required',            
+            'fecha_inicio' => 'required',            
+            'fecha_fin' => 'required',            
+                    
         ]);
         $pago = new Pagos();
         $pago->n_factura = $request->post('n_factura');
@@ -63,6 +69,7 @@ public function mostrar()
         $pago->tipo_pago = $request->post('tipo_pago');
         $pago->metodo_pago = $request->post('metodo_pago');
         $pago->valor = $request->post('valor');        
+        $pago->fecha_inicio = $request->post('fecha_inicio');        
         $pago->fecha_fin = $request->post('fecha_fin');        
         $pago->save();
         return Response::json($pago);     

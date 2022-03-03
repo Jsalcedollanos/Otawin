@@ -54,12 +54,12 @@
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Fecha Inicio</span>
-                <input type="text" id="f_ini" name="f_ini" step="1" class="form-control form-control-lg">
+                <input type="date" id="f_inicio" name="f_inicio" step="1" class="form-control form-control-lg">
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Fecha fin</span>
-                <input type="text" id="f_fin" name="f_fin" step="1" class="form-control form-control-lg">
+                <input type="date" id="f_fin" name="f_fin" step="1" class="form-control form-control-lg">
               </div>
 
               <div class="input-group mb-3">

@@ -276,8 +276,15 @@ return [
         ['header' => 'Control'],
         [
             'text'       => 'Vencidos',
-            'icon_color' => 'fas fa-user',
-            'url'        => '/clientes/index',
+            'icon' => 'fas fa-user',
+            'url'        => '/',
+        ],
+  
+        ['header' => 'Calendario de actividades'],
+        [
+            'text'       => 'Calendario',
+            'icon' => 'fas fa-calendar-alt',
+            'url'        => '/',
         ],
         
     ],

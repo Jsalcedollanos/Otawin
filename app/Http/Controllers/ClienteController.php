@@ -52,7 +52,7 @@ class ClienteController extends Controller
     {
         $request -> validate([
             'ide' => 'required|min:8|max:11',
-            'nombre' => 'required|min:3|max:25',
+            /* 'nombre' => 'required|min:3|max:25', */
             'apellido' => 'required|min:3|max:30',            
             'telefono' => 'required|min:7|max:12',
             'direccion' => 'required|max:25',
@@ -78,7 +78,9 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-
+        /* return view('clientes.index', [
+            'clientes' => Cliente::find($id);
+        ]); */
     }
 
     /**
@@ -133,4 +135,5 @@ class ClienteController extends Controller
         'success' => 'Record deleted successfully!'
         ]); 
     }
+
 }

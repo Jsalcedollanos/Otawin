@@ -25,33 +25,33 @@
                 ?>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">N°Factura</span>
-                <input value="<?php echo $CH ?>" readonly id="n_factura" name="n_factura" class="form-control form-control-lg" type="number" min="0" placeholder="" tabindex="1">
+                <input value="<?php echo $CH ?>" readonly id="n_factura" name="n_factura" class="form-control form-control-lg" type="number" min="0" placeholder="">
                 <span class="text-danger" id="facturaError"></span>
                 <br>
               </div>   
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Identificacion</span>
-                <input readonly type="text" onkeypress='return validaNumericos(event)' name="identificacionCliente" id="identificacionCliente" class="form-control form-control-lg" placeholder="" tabindex="2">
+                <input readonly type="text" onkeypress='return validaNumericos(event)' name="identificacionCliente" id="identificacionCliente" class="form-control form-control-lg">
                 <span class="text-danger" id="ideError"></span>
               </div>
               
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Nombre</span>    
-                <input readonly maxlength="11" id="nombreCliente" name="nombreCliente" class="form-control form-control-lg" type="text" min="0" placeholder="" tabindex="2">
+                <input readonly maxlength="11" id="nombreCliente" name="nombreCliente" class="form-control form-control-lg" type="text" min="0">
                 <span class="text-danger" id="nombreError"></span><br>
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Apellidos</span>   
-                <input  readonly maxlength="20" id="apellidoCliente" name="apellidoCliente" class="form-control form-control-lg" type="text" placeholder="" tabindex="3">
+                <input  readonly maxlength="20" id="apellidoCliente" name="apellidoCliente" class="form-control form-control-lg" type="text">
                 <span class="text-danger" id="apellidoError"></span>
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Metodo de pago</span>    
-                    <select id="metodo_pago" name="metodo_pago" class="form-select" aria-label="Default select example">
-                        <option selected>Selecciona Opcion</option>
+                    <select id="metodo_pago" name="metodo_pago" class="form-select" aria-label="Default select example" tabindex="1">
+                        <option value="" selected>Selecciona Opcion</option>
                         <option value="Transferencia">Transferencia</option>
                         <option value="Efectivo">Efectivo</option>
                     </select>
@@ -60,8 +60,8 @@
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Tipo de pago</span>    
-                    <select onchange='valPrecio();' class="form-select" id="tipo_pago" name="tipo_pago" aria-label="Default select example">
-                        <option selected>Selecciona Opcion</option>
+                    <select onchange='valPrecio();' class="form-select" id="tipo_pago" name="tipo_pago" aria-label="Default select example" tabindex="2">
+                        <option value="" selected>Selecciona Opcion</option>
                         <option value="Diario">Diario</option>
                         <option value="Quincenal">Quincenal</option>
                         <option value="Mensual">Mensual</option>
@@ -71,19 +71,21 @@
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Fecha inicio</span>   
-                <input  type="date" maxlength="20" id="fecha_ini" name="fecha_ini" class="form-control form-control-lg" type="text" placeholder="" tabindex="3">
+                <input  type="date"  value="" id="fecha_inicio" name="fecha_inicio" class="form-control form-control-lg" tabindex="3">
+                <span class="text-danger" id="inicioError"></span><br>
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Fecha fin</span>
-                <input type="date" id="fecha_fin" name="fecha_fin" step="1" class="form-control form-control-lg" min="2013-01-01T00:00Z" max="2013-12-31T12:00Z" value="2013-01-01T12:00">
+                <input type="date" value="" id="fecha_fin" name="fecha_fin" class="form-control form-control-lg" tabindex="4">
+                <span class="text-danger" id="finError"></span><br>
               </div>
 
               
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">$COP</span>
-                <input readonly maxlength="7" onkeypress="return valideKey(event);" id="valor" name="valor" class="form-control" type="text" placeholder="" tabindex="7">
+                <input readonly maxlength="7" onkeypress="return valideKey(event);" id="valor" name="valor" class="form-control" type="text">
                 <span class="text-danger" id="valorError"></span><br>
               </div>
 

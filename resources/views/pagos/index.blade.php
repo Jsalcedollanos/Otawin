@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <h1>Otawin</h1>
+    <h1>Pagos de Body Life</h1>
 @stop
 
 @section('content')
@@ -18,13 +18,6 @@
 @include('pagos.modal_add_pago')
 @include('pagos.modal_eliminar_pago')
 @include('pagos.modal_actualizar_pago')
-
-    <p>Pagos - Body Life.</p>
-    
-            <div id="content-boton">
-                <i id="btnPago" type="button" class="bi bi-credit-card-2-back-fill"></i>
-                <p>Agregar Pago</p>
-            </div> 
 
     <table class="table table-dark table-striped " id="pagos">
     <thead>
@@ -35,16 +28,22 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>                 
             <th scope="col">M-pago</th>                 
-            <th scope="col">T-pago</th>                 
-            <th scope="col">Valor</th>                 
+            <th scope="col">T-pago</th>                
             <th scope="col">Ingreso</th>                                
-            <th scope="col">Final</th>                                
+            <th scope="col">Final</th> 
+            <th scope="col">Valor</th>                               
             <th scope="col">Editar</th>                                
             <th scope="col">Eliminar</th>                                                               
             <th scope="col">Ver</th>                                                               
         </tr>
     </thead>
 </table>
+
+<div id="content-total">
+    <label id="tituloTotal" for="">Total vendido: </label>
+    <span id="total"></span>
+</div>
+
 @stop
 
 @section('css')
@@ -66,10 +65,27 @@
 
 <script>
 $(document).ready( function () {
+    jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
+    return this.flatten().reduce( function ( a, b ) {
+      if ( typeof a === 'string' ) {
+        a = a.replace(/[^\d.-]/g, '') * 1;
+      }
+      if ( typeof b === 'string' ) {
+        b = b.replace(/[^\d.-]/g, '') * 1;
+      }
+      return a + b;
+    }, 0);
+  });
+
     var table = $('#pagos').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "ajax": "{{route('pagos.index')}}",     
+        drawCallback: function () {
+            var api = this.api();
+            var total = api.column( 9, {"filter":"applied"}).data().sum();
+            $('#total').text(total);
+        },
+        
+        "ajax": "{{route('pagos.index')}}", 
+            
         "columns": [
             {data: 'id'},
             {data: 'ide'},
@@ -78,9 +94,9 @@ $(document).ready( function () {
             {data: 'apellido'},
             {data: 'metodo_pago'},
             {data: 'tipo_pago'},
-            {data: 'valor'},
-            {data: 'created_at'},
+            {data: 'fecha_inicio'},
             {data: 'fecha_fin'},
+            {data: 'valor'},
             {data:'id', "render": function (data) {
             return "<button id=\"" + data + "\" type=\"button\" name=\"btnEditar\" class=\"btnEditar btn btn-warning botonEditar\"><span class=\"material-icons\">edit</span></button>";
             }},
@@ -93,9 +109,14 @@ $(document).ready( function () {
             {data:'id', "render": function (data) {
                 var ide = data;
             return "<button  id=\"" + data + "\" type=\"button\" name=\"ver\"  class=\"ver btn btn-info\"> <span class=\"bi bi-eye-fill\"></span></button>";
-            }},        
-        ]       
+            }}, 
+                   
+        ]   
+            
     });
+    
+    /* var tot = table.column( 9 ).data().sum();
+    $('#total').text(tot); */
     
 
     /* ELIMINAR PAGO */
@@ -138,7 +159,7 @@ $(document).ready( function () {
     var metodo_pago = $('#m_pago').val();
     var valor = $('#val').val();
     var fecha_fin = $('#f_fin').val();
-    var fecha_ini = $('#f_ini').val();
+    var fecha_inicio = $('#f_inicio').val();
         $.ajax({
             url:"update/"+idp,
             type: 'PUT',
@@ -152,7 +173,7 @@ $(document).ready( function () {
                 nombre:nombrep,
                 apellido:apellidop,
                 fecha_fin:fecha_fin,
-                fecha_ini:fecha_ini,
+                fecha_inicio:fecha_inicio,
                 tipo_pago:tipo_pago,
                 metodo_pago:metodo_pago,
                 valor:valor,                
@@ -180,6 +201,9 @@ $(document).ready( function () {
     });
     /* EDITAR PAGO */
 });
+
+
+
 </script>
 <!-- LISTAR PAGO PARA EDITAR -->
 <script>
@@ -200,16 +224,18 @@ $(document).ready( function () {
                     $('#t_pago').val(data.tipo_pago),
                     $('#val').val(data.valor),
                     $('#f_fin').val(data.fecha_fin),
-                    $('#f_ini').val(data.fecha_ini),
+                    $('#f_inicio').val(data.fecha_inicio),
                     $('#actualizarModal').modal('show');
                 }
             });
         });
     });
 </script>
+
 <!-- FIN DE LISTAR PAGO -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
+
 @stop

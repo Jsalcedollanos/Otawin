@@ -52,7 +52,7 @@
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Metodo de pago</span>    
                     <select id="metodo_pago" name="metodo_pago" class="form-select" aria-label="Default select example">
-                        <option selected>Selecciona Opcion</option>
+                        <!-- <option selected>Selecciona Opcion</option> -->
                         <option value="Transferencia">Transferencia</option>
                         <option value="Efectivo">Efectivo</option>
                     </select>

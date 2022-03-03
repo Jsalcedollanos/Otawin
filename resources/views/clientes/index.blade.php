@@ -11,19 +11,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <h1>Otawin</h1>
+    <h1>Ingreso de clientes Body Life</h1>
 @stop
 
 @section('content')
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-
-            <p>Clientes - Body Life.</p>
-            <div id="content-boton">
+        <div id="menu">
+            <div class="btnGuardar">
                 <i id="btnGuardar" type="button" class="fas fa-user-plus"></i>
                 <p>Agregar cliente</p>
-            </div>   
+            </div> 
             
+            <div class="btnBalance">
+                <i id="btnBalance" data-toggle="modal"  data-target="#balanceModal" type="button"class="fas fa-balance-scale"></i>
+                <p>Ver Balance</p>
+            </div> 
+        </div> 
+
 @include('clientes.modal_add_cliente')
 @include('clientes.modal_eliminar_cliente')
 @include('clientes.modal_actualizar_cliente')
@@ -46,7 +51,15 @@
     </thead>
 </table>
 
+<!-- resultado cantidad pacientes -->
+<div id="content-total">
+    <label for="">Cantidad de clientes registrados: </label>
+    <span id="total"></span>
+</div>
+<!-- fin -->
+
 @include('clientes.modal_pago_cliente')
+@include('clientes.modal_balance_pagos')
 @stop
 
 
@@ -69,7 +82,25 @@
 
 <script>
 $(document).ready( function () {
+    jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
+    return this.flatten().reduce( function ( a, b ) {
+      if ( typeof a === 'string' ) {
+        a = a.replace(/[^\d.-]/g, '') * 1;
+      }
+      if ( typeof b === 'string' ) {
+        b = b.replace(/[^\d.-]/g, '') * 1;
+      }
+      return a + b;
+    }, 0);
+  });
+
   var table = $('#clientes').DataTable({
+    drawCallback: function () {
+            var api = this.api();
+            var total = api.column( 9, {"filter":"applied"}).data().sum();
+            $('#total').text(total);
+        },
+        
         "processing": true,
         "serverSide": true,
         "ajax": "{{route('clientes.index')}}",
@@ -220,7 +251,7 @@ $('#editar-cliente').submit(function(e){
                 toastr.error('Opps Algunos errores no permiten actualizar a tu cliente, Corrigelos!',{timeOut:5000});
                 $('#editarIdeError').text(response.responseJSON.errors.ide);
                 $('#editarNombreError').text(response.responseJSON.errors.nombre);
-                $('#editarApellidosError').text(response.responseJSON.errors.apellido);
+                $('#editarApellidoError').text(response.responseJSON.errors.apellido);
                 $('#editarDireccionError').text(response.responseJSON.errors.direccion);
                 $('#editarTelefonoError').text(response.responseJSON.errors.telefono);
                 $('#editarCorreoError').text(response.responseJSON.errors.correo);
@@ -240,7 +271,7 @@ $('#editar-cliente').submit(function(e){
         let tipo_pago = $('#tipo_pago').val();
         let valor = $('#valor').val();
         let fecha_fin = $('#fecha_fin').val();
-        let fecha_ini = $('#fecha_ini').val();
+        let fecha_inicio = $('#fecha_inicio').val();
         
         $.ajax({
             url: '{{route("pagos.create")}}',
@@ -257,7 +288,7 @@ $('#editar-cliente').submit(function(e){
             apellido:apellidocli,
             metodo_pago:metodo_pago,
             tipo_pago:tipo_pago,
-            fecha_ini:fecha_ini,
+            fecha_inicio:fecha_inicio,
             fecha_fin:fecha_fin,
             valor:valor,            
         },
@@ -275,7 +306,12 @@ $('#editar-cliente').submit(function(e){
                 $('#ideError').text(response.responseJSON.errors.ide);                                                  
                 $('#nombreError').text(response.responseJSON.errors.nombre);                                                  
                 $('#apellidoError').text(response.responseJSON.errors.apellido);                                                  
-                $('#valorError').text(response.responseJSON.errors.valor);                                                                                                    
+                $('#valorError').text(response.responseJSON.errors.valor);
+                $('#metodoError').text(response.responseJSON.errors.metodo_pago);
+                $('#pagoError').text(response.responseJSON.errors.tipo_pago);
+                $('#inicioError').text(response.responseJSON.errors.fecha_inicio);
+                $('#finError').text(response.responseJSON.errors.fecha_fin);
+                                                                                                                  
             }
         });       
 });  

@@ -14,7 +14,7 @@ class AddFechaToPagosTable extends Migration
     public function up()
     {
         Schema::table('pagos', function (Blueprint $table) {
-            $table->string('fecha_inicio')->after('valor');
+            $table->date('fecha_inicio')->after('valor');
         });
     }
 

@@ -49,7 +49,7 @@
               <div class="input-group mb-3">     
                 <span class="input-group-text" id="basic-addon2">Telefono</span> 
                 <input  maxlength="10"  id="editarTelefono" name="editarTelefono" class="form-control form-control-lg" type="text" min="0" placeholder="" tabindex="5">
-                <span class="text-danger" id="EditarTelefonoError"></span><br>
+                <span class="text-danger" id="editarTelefonoError"></span><br>
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Direccion</span>
