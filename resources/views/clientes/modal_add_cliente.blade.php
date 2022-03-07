@@ -38,7 +38,7 @@
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Correo</span>   
-                <input  maxlength="40" id="correo" name="correo" class="form-control form-control-lg" type="email" placeholder="" tabindex="4">
+                <input  maxlength="40"  id="correo" name="correo" class="form-control form-control-lg" type="email" placeholder="" tabindex="4">
                 <span class="text-danger" id="correoError"></span>
               </div>
 
@@ -48,7 +48,7 @@
                 <span class="text-danger" id="telefonoError"></span><br>
 
                 <span class="input-group-text" id="basic-addon2">Direccion</span>
-                <input  maxlength="40" id="direccion" name="direccion" class="form-control form-control-lg" type="text" placeholder="" tabindex="6">
+                <input  maxlength="40"  id="direccion" name="direccion" class="form-control form-control-lg" type="text" placeholder="" tabindex="6">
                 <span class="text-danger" id="direccionError"></span><br>
               </div>
                 <br>

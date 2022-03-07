@@ -82,22 +82,10 @@
 
 <script>
 $(document).ready( function () {
-    jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
-    return this.flatten().reduce( function ( a, b ) {
-      if ( typeof a === 'string' ) {
-        a = a.replace(/[^\d.-]/g, '') * 1;
-      }
-      if ( typeof b === 'string' ) {
-        b = b.replace(/[^\d.-]/g, '') * 1;
-      }
-      return a + b;
-    }, 0);
-  });
-
-  var table = $('#clientes').DataTable({
-    drawCallback: function () {
+    var table = $('#clientes').DataTable({
+        drawCallback: function () {
             var api = this.api();
-            var total = api.column( 9, {"filter":"applied"}).data().sum();
+            var total = api.rows({"filter":"applied"}).data().count();
             $('#total').text(total);
         },
         
@@ -127,7 +115,11 @@ $(document).ready( function () {
             }},
         ]
     });
+ 
 
+
+
+    
 
 /* INSTRUCCION AJAX PARA GUARDAR CLIENTES */
 $('#btnGuardar').on('click',function(){
@@ -140,6 +132,9 @@ $('#btnGuardar').on('click',function(){
     $('#direccion').val("");
     /* fin de este bloque */
     $('#clienteModal').modal('show');
+        $('#correo').val('noaplica@gmail.com');
+        $('#telefono').val('1111111111');
+        $('#direccion').val('noaplica');
     $('#form-cliente').submit(function(e){
         e.preventDefault();    
         let ide = $('#ide').val();
@@ -166,7 +161,7 @@ $('#btnGuardar').on('click',function(){
         },
             success:function(data){
                 setTimeout(function(){
-                  $("#clienteModal").find("input,textarea,select").val("");
+                  $("#clienteModal").find("input,textarea,select,span").val("");
                   $('#clienteModal').modal('hide');
                   toastr.success('La factura se ha guardado satifactoriamente', 'Guardado!', {timeOut: 5000});
                   table.ajax.reload();
@@ -174,6 +169,7 @@ $('#btnGuardar').on('click',function(){
             },
             
             error:function(response){
+                
                 toastr.error('Opps Algunos errores no permiten guardar tu producto, Corrigelos!',{timeOut:5000});
                 $('#ideError').text(response.responseJSON.errors.ide);
                 $('#nombreError').text(response.responseJSON.errors.nombre);
