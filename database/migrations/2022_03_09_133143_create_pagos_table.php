@@ -22,8 +22,10 @@ class CreatePagosTable extends Migration
             $table->string('metodo_pago',20);
             $table->string('tipo_pago',20);
             $table->integer('valor');
+	        $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('estado')->default('activo');
+            $table->foreign('ide')->references('ide')->on('clientes');
             $table->timestamps();
         });
     }

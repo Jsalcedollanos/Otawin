@@ -25,7 +25,7 @@
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Identificacion</span>
                 <input type="text" onkeypress='return validaNumericos(event)' name="editarIde" id="editarIde" class="form-control form-control-lg" placeholder="" tabindex="1">
-                <span class="text-danger" id="editarIdeError"></span>
+                <span class="text-danger" id="editarIdeError"></span><br>
               </div>
               
               <div class="input-group mb-3">

@@ -12,18 +12,17 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <h1>Pagos de Body Life</h1>
 
-    <div id="menu">
-        <div class="btnBalance">
-            <i id="btnBalance" data-toggle="modal"  data-target="#balanceModal" type="button"class="fas fa-balance-scale"></i>
-            <p>Ver Balance</p>
+        <div id="menu">
+            <div class="btnBalance">
+                <i id="btnBalance" data-toggle="modal"  data-target="#balanceModal" type="button"class="fas fa-balance-scale"></i>
+                <p>Ver Balance</p>
+            </div>
         </div>
-    </div>
 
 @stop
 
 @section('content')
 
-@include('pagos.modal_add_pago')
 @include('pagos.modal_eliminar_pago')
 @include('pagos.modal_actualizar_pago')
 

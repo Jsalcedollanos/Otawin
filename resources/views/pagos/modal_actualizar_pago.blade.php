@@ -85,7 +85,7 @@
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">$COP</span>
-                <input readonly maxlength="7" onkeypress="return valideKey(event);" id="val" name="val" class="form-control" type="text" placeholder="" tabindex="7">
+                <input  maxlength="7"  id="val" name="val" class="form-control" type="text" placeholder="" tabindex="7">
                 <span class="text-danger" id="valorError"></span><br>
               </div>
 

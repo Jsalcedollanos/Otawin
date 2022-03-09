@@ -1,55 +1,70 @@
-<x-guest-layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <x-jet-authentication-card>   
+    <link rel="stylesheet" href="/fonts/icomoon/style.css">
 
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
 
-        <x-jet-validation-errors class="mb-4" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="/css/estilos_login.css">
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
+    <title>Ingreso || Body Life</title>
+  </head>
+  <body>
+  
 
-        <form method="POST" action="{{ route('login') }}">
+  <div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2" style="background-image: url('/images/login-fond.png');"></div>
+    <div class="contents order-2 order-md-1">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-7">
+            <h3>Ingresar a <strong>Otawin</strong></h3>
+            <p class="mb-4">El poder de sistematizar tu negocio.</p>
+            <form method="POST" action="{{ route('login') }}">
             @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+              <div class="form-group first">
+                <label for="username">Correo:</label>
+                <input type="text" class="form-control" placeholder="your-email@gmail.com" id="email" name="email">
+              </div>
+              <div class="form-group last mb-3">
+                <label for="password">Contraseña:</label>
+                <input type="password" class="form-control" placeholder="Ingresa tu contraseña" id="password" name="password">
+              </div>
+              
+              <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0"><span class="caption">Recuerdame</span>
+                  <input type="checkbox" checked="checked"/>
+                  <div class="control__indicator"></div>
                 </label>
-            </div>
+                <span class="ml-auto"><a href="#" class="forgot-pass">No recuerdas tu contraseña?</a></span> 
+              </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+              <input type="submit" value="Entrar" class="btn btn-block btn-primary">
 
-                
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
-            </div>
-            <div class="flex items-center justify-end mt-4">
-            <a href="/register">No tienes una cuenta? Registrate</a>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+    
+  </div>
+    
+    
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

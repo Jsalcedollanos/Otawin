@@ -25,7 +25,7 @@
                 ?>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">N°Factura</span>
-                <input value="<?php echo $CH ?>" readonly id="n_factura" name="n_factura" class="form-control form-control-lg" type="number" min="0" placeholder="">
+                <input value="" readonly id="n_factura" name="n_factura" class="form-control form-control-lg" type="text" min="0" placeholder="">
                 <span class="text-danger" id="facturaError"></span>
                 <br>
               </div>   
@@ -85,7 +85,7 @@
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">$COP</span>
-                <input readonly maxlength="7" onkeypress="return valideKey(event);" id="valor" name="valor" class="form-control" type="text">
+                <input  maxlength="7" id="valor" name="valor" class="form-control" type="text">
                 <span class="text-danger" id="valorError"></span><br>
               </div>
 
@@ -105,6 +105,7 @@
 </body>
 
 <!-- JS -->
+<script src="/js/numeroRandom.js"></script>
 <script src="/js/validaNumericos.js"></script>
 <script src="/js/validarPrecio.js"></script>
 <script src="/js/validacionNumero.js"></script>

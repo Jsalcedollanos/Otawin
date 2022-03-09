@@ -52,11 +52,9 @@ class ClienteController extends Controller
     {
         $request -> validate([
             'ide' => 'required|min:8|max:11',
-            /* 'nombre' => 'required|min:3|max:25', */
+            'nombre' => 'required|min:3|max:25',
             'apellido' => 'required|min:3|max:30',            
-            'telefono' => 'required|min:7|max:12',
-            'direccion' => 'required|max:25',
-            'correo' => 'required|min:1'
+            'telefono' => 'required|min:7|max:12',            
         ]);
         $cliente = new Cliente();
         $cliente->ide = $request->post('ide');
@@ -110,8 +108,7 @@ class ClienteController extends Controller
             'apellido' => 'required|min:3|max:30',
             'ide' => 'required|min:8|max:12',
             'telefono' => 'required|min:7|max:13',
-            'direccion' => 'required|max:25',
-            'correo' => 'required|min:3'
+            
         ]);
         $cliente = Cliente::find($id);
         $cliente ->fill($request->all());

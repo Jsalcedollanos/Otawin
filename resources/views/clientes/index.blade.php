@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <h1>Ingreso de clientes Body Life</h1>
 @stop
 
@@ -123,7 +124,9 @@ $(document).ready( function () {
 
 /* INSTRUCCION AJAX PARA GUARDAR CLIENTES */
 $('#btnGuardar').on('click',function(){
+    
     /* Restablecer modal al cargar */
+    
     $('#ide').val("");
     $('#nombre').val("");
     $('#apellido').val("");
@@ -170,7 +173,7 @@ $('#btnGuardar').on('click',function(){
             
             error:function(response){
                 
-                toastr.error('Opps Algunos errores no permiten guardar tu producto, Corrigelos!',{timeOut:5000});
+                toastr.error('Opps Algunos errores no permiten guardar tu cliente, Corrigelos!',{timeOut:5000});
                 $('#ideError').text(response.responseJSON.errors.ide);
                 $('#nombreError').text(response.responseJSON.errors.nombre);
                 $('#apellidoError').text(response.responseJSON.errors.apellido);
@@ -209,7 +212,7 @@ $(document).on('click','.eliminar',function(){
         });
     });
     
-/* BLOQUE DE ACTUALIZAR FACTURA VIA AJAX */
+/* BLOQUE DE ACTUALIZAR CLIENTE VIA AJAX */
 $('#editar-cliente').submit(function(e){
     e.preventDefault();
     var idc = $('#id').val();
@@ -289,8 +292,10 @@ $('#editar-cliente').submit(function(e){
             valor:valor,            
         },
             success:function(data){
+                
                 setTimeout(function(){
                   $("#pagosModal").find("input,textarea,select").val("");
+                  $('#n_factura').val("");
                   $('#pagosModal').modal('hide');
                   toastr.success('El pago se ha guardado satifactoriamente', 'Guardado!', {timeOut: 5000});
                   table.ajax.reload();
@@ -321,6 +326,7 @@ $('#editar-cliente').submit(function(e){
     let id_cliente;
 $(document).ready(function(){
     $(document).on('click','.btnEditar',function(){
+        
         id_cliente = $(this).attr('id');
             $.ajax({
                 url:"editar/"+id_cliente,
@@ -346,11 +352,13 @@ $(document).ready(function(){
     let id_c;
     $(document).ready(function(){
     $(document).on('click','.btnPago',function(){
+        
         id_c = $(this).attr('id');
             $.ajax({
                 url:"pago/"+id_c,
                 type:'get',
             success:function(data){
+                $('#n_factura').val(Math.floor((Math.random() * 5000) + 1000)),
                 $('#idc').val(data.id),
                 $('#identificacionCliente').val(data.ide),
                 $('#nombreCliente').val(data.nombre),
@@ -363,6 +371,7 @@ $(document).ready(function(){
     /* FIN DE LISTAR PRODUCTO VIA AJAX */
 });   
 </script>
+    <script src="/js/numeroRandom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 @stop
