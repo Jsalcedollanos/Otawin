@@ -1,70 +1,100 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Otawin</title>
 
-    <link rel="stylesheet" href="/fonts/icomoon/style.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="" class="h1"><b>Ota</b>win</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg"><b>Bot_Lyn:</b> Hola, en que puedo ayudar hoy?</p>
 
-    <link rel="stylesheet" href="/css/owl.carousel.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="/css/estilos_login.css">
-
-    <title>Ingreso || Body Life</title>
-  </head>
-  <body>
-  
-
-  <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('/images/login-fond.png');"></div>
-    <div class="contents order-2 order-md-1">
-
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-md-7">
-            <h3>Ingresar a <strong>Otawin</strong></h3>
-            <p class="mb-4">El poder de sistematizar tu negocio.</p>
-            <form method="POST" action="{{ route('login') }}">
-            @csrf
-              <div class="form-group first">
-                <label for="username">Correo:</label>
-                <input type="text" class="form-control" placeholder="your-email@gmail.com" id="email" name="email">
-              </div>
-              <div class="form-group last mb-3">
-                <label for="password">Contraseña:</label>
-                <input type="password" class="form-control" placeholder="Ingresa tu contraseña" id="password" name="password">
-              </div>
-              
-              <div class="d-flex mb-5 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Recuerdame</span>
-                  <input type="checkbox" checked="checked"/>
-                  <div class="control__indicator"></div>
-                </label>
-                <span class="ml-auto"><a href="#" class="forgot-pass">No recuerdas tu contraseña?</a></span> 
-              </div>
-
-              <input type="submit" value="Entrar" class="btn btn-block btn-primary">
-
-            </form>
+      <form action="{{ route ('login') }}" method="post">
+          @csrf
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="juan@gmail.com" value="{{old('email')}}" name="email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
           </div>
         </div>
+        <!-- Mensaje de validacion -->
+        @error('email')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <!-- Fin de mensaje -->
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" value="{{old('password')}}" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Mensaje de validacion -->
+        @error('password')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <!-- Fin de mensaje de validacion -->
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Recuerdame
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center mt-2 mb-3">
+        <a href="#" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i> Ingresa con Facebook
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Ingresa con Google+
+        </a>
       </div>
+      <!-- /.social-auth-links -->
+
+      <p class="mb-1">
+        <a href="/forgot-password">No recuerdo mi contraseña</a>
+      </p>
+      
     </div>
-
-    
+    <!-- /.card-body -->
   </div>
-    
-    
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.min.js"></script>
+</body>
 </html>

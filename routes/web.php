@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/calendario', function (){
+    return view('calendario.index');
+});
+
 
 
 Route::get('/clientes/index', function () {
