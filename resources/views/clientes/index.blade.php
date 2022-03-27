@@ -4,7 +4,6 @@
 
 @section('content_header')
 <link rel="stylesheet" href="/css/estilos_clientes.css">
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,7 +11,7 @@
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <h1>Ingreso de clientes Body Life - Fitness Studio</h1>
+    <h1>Ingreso de clientes Body Life</h1>
 @stop
 
 @section('content')
@@ -34,7 +33,7 @@
 @include('clientes.modal_eliminar_cliente')
 @include('clientes.modal_actualizar_cliente')
 
-    <table class="table table-dark table-striped " id="clientes">
+    <table class="table table-dark table-striped " id="clients">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -79,11 +78,12 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>  
+<script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <!-- Validacion solo numero -->
 
 <script>
 $(document).ready( function () {
-    var table = $('#clientes').DataTable({
+    var table = $('#clients').DataTable({
         /* drawCallback: function () {
             var api = this.api();
             var total = api.rows({"filter":"applied"}).data().count();
