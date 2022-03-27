@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <h1>Ingreso de clientes Body Life</h1>
+    <h1>Ingreso de clientes Body Life - Fitness Studio</h1>
 @stop
 
 @section('content')
@@ -84,11 +84,11 @@
 <script>
 $(document).ready( function () {
     var table = $('#clientes').DataTable({
-        drawCallback: function () {
+        /* drawCallback: function () {
             var api = this.api();
             var total = api.rows({"filter":"applied"}).data().count();
             $('#total').text(total);
-        },
+        }, */
         
         "processing": true,
         "serverSide": true,
