@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -145,13 +146,13 @@ return [
     |
     */
 
-    'sidebar_mini' => 'lg',
+    'sidebar_mini' => 'xs',
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
     'sidebar_scrollbar_theme' => 'os-theme-light',
-    'sidebar_scrollbar_auto_hide' => 'l',
+    'sidebar_scrollbar_auto_hide' => 'never',
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
 
@@ -167,13 +168,13 @@ return [
     |
     */
 
-    'right_sidebar' => false,
+    'right_sidebar' => true,
     'right_sidebar_icon' => 'fas fa-cogs',
-    'right_sidebar_theme' => 'dark',
+    'right_sidebar_theme' => 'light',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
-    'right_sidebar_scrollbar_auto_hide' => 'l',
+    'right_sidebar_scrollbar_auto_hide' => 'never',
 
     /*
     |--------------------------------------------------------------------------
@@ -247,7 +248,7 @@ return [
             'can'  => 'manage-blog',
         ],
         
-        ['header' => 'account_settings'],
+       /*  ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -257,26 +258,33 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ], */
         
         ['header' => 'Ingreso Clientes'],
         [
             'text'       => 'Clientes',
-            'icon_color' => 'fas fa-user',
+            'icon' => 'bi bi-person-plus-fill',
             'url'        => '/clientes/index',
         ],
-
+        
         ['header' => 'Ingreso Pagos'],
         [
             'text'       => 'Pagos',
-            'icon_color' => 'fas fa-user',
+            'icon_color' => 'bi bi-cash-coin',
             'url'        => '/pagos/index',
+        ],
+
+        ['header' => 'Seguimiento Quincenal'],
+        [
+            'text'       => 'Seguimiento',
+            'icon' => 'bi bi-binoculars-fill',
+            'url'        => '/',
         ],
 
         ['header' => 'Control'],
         [
             'text'       => 'Vencidos',
-            'icon' => 'fas fa-user',
+            'icon' => 'bi bi-exclamation-diamond-fill',
             'url'        => '/',
         ],
   
@@ -286,6 +294,15 @@ return [
             'icon' => 'fas fa-calendar-alt',
             'url'        => '/',
         ],
+
+        ['header' => 'Body Fit'],
+        [
+            'text'       => 'Seguimiento',
+            'icon' => 'bi bi-emoji-heart-eyes-fill',
+            'url'        => '/',
+        ],
+
+        
         
     ],
 
@@ -342,6 +359,7 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
+            
             ],
         ],
         'Select2' => [

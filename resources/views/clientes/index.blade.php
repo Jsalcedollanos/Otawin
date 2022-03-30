@@ -4,6 +4,7 @@
 
 @section('content_header')
 <link rel="stylesheet" href="/css/estilos_clientes.css">
+<link rel="stylesheet" href="/fonts/fontawesome-free-6.1.1-web/css/all.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,16 +14,15 @@
 
     <h1>Ingreso de clientes Body Life</h1>
 @stop
-
 @section('content')
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <div id="menu">
             <div class="btnGuardar">
-                <i id="btnGuardar" type="button" class="fas fa-user-plus"></i>
+                <i id="btnGuardar" type="button" class="fa-solid fa-person-circle-plus"></i>
                 <p>Agregar cliente</p>
             </div> 
-            
+    
             <div class="btnBalance">
                 <i id="btnBalance" data-toggle="modal"  data-target="#balanceModal" type="button"class="fas fa-balance-scale"></i>
                 <p>Ver Balance</p>
@@ -84,11 +84,11 @@
 <script>
 $(document).ready( function () {
     var table = $('#clients').DataTable({
-        /* drawCallback: function () {
+        drawCallback: function () {
             var api = this.api();
-            var total = api.rows({"filter":"applied"}).data().count();
+            var total = api.rows({}).data().count();
             $('#total').text(total);
-        }, */
+        },
         
         "processing": true,
         "serverSide": true,
