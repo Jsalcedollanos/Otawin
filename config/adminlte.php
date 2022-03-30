@@ -299,7 +299,7 @@ return [
         [
             'text'       => 'Seguimiento',
             'icon' => 'bi bi-emoji-heart-eyes-fill',
-            'url'        => '/',
+            'url'        => '#',
         ],
 
         

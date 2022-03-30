@@ -86,7 +86,7 @@ $(document).ready( function () {
     var table = $('#clients').DataTable({
         drawCallback: function () {
             var api = this.api();
-            var total = api.rows({}).data().count();
+            var total = api.rows().data().count();
             $('#total').text(total);
         },
         
