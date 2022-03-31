@@ -24,6 +24,9 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+  <link rel="stylesheet" href="/fonts/fontawesome-free-6.1.1-web/css/all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <h1>Otawin</h1>
 @stop
 
