@@ -26,13 +26,13 @@
               
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Nombre</span>    
-                <input  maxlength="11" id="nombre" name="nombre" class="form-control form-control-lg" type="text" min="0" placeholder="" tabindex="2">
+                <input  maxlength="40" id="nombre" name="nombre" class="form-control form-control-lg" type="text" min="0" placeholder="" tabindex="2">
                 <span class="text-danger" id="nombreError"></span><br>
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Apellidos</span>   
-                <input  maxlength="20" id="apellido" name="apellido" class="form-control form-control-lg" type="text" placeholder="" tabindex="3">
+                <input  maxlength="40" id="apellido" name="apellido" class="form-control form-control-lg" type="text" placeholder="" tabindex="3">
                 <span class="text-danger" id="apellidoError"></span>
               </div>
 
