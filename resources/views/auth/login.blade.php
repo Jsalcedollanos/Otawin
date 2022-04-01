@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Otawin</title>
+  <!-- Fuente de botones google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Passion+One&family=Roboto:wght@300&display=swap" rel="stylesheet">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -13,16 +17,17 @@
   <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/css/estilos_login.css">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
+<div  class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
+  <div id="login-card" class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="" class="h1"><b>Ota</b>win</a>
+      <img src="vendor/adminlte/dist/img/otawin2.png" alt="otawin" srcset="">
     </div>
     <div class="card-body">
-      <p class="login-box-msg"><b>Bot_Lyn:</b> Hola, en que puedo ayudar hoy?</p>
+      <p id="welcome" class="login-box-msg"><b class="botilyn">Botilyn:</b> Hola, Bienvenido al sistema de autenticacion Otawin</p>
 
       <form action="{{ route ('login') }}" method="post">
           @csrf
@@ -62,25 +67,25 @@
             </div>
           </div>
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+          <div id="content-ingresar" class="mt-3 mb-1">
+            <button type="submit" class="btn-ingresar">Ingresar</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
       <div class="social-auth-links text-center mt-2 mb-3">
-        <a href="#" class="btn btn-block btn-primary">
+        <a href="#" id="btn-fb" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Ingresa con Facebook
         </a>
-        <a href="#" class="btn btn-block btn-danger">
+        <a href="#" id="btn-google" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus mr-2"></i> Ingresa con Google+
         </a>
       </div>
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
-        <a href="/forgot-password">No recuerdo mi contraseña</a>
+      <p class="mb-1" id="content-forgot">
+        <a id="forgot" href="/forgot-password"><b>No recuerdo mi contraseña</b></a>
       </p>
       
     </div>

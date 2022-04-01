@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Forgot Password (v2)</title>
+  <title>Otawin || Forgot</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Passion+One&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/estilos_login.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -16,12 +18,12 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="card card-outline card-primary">
+  <div id="forgot-card" class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Ota</b>win</a>
+      <img src="vendor/adminlte/dist/img/otawin2.png" alt="otawin" srcset="">
     </div>
     <div class="card-body">
-      <p class="login-box-msg"><b> Bot_Lyn:</b> No recuerdas tu contraseña, digitala y te ayudare a recuperarla!</p>
+      <p id="welcome" class="login-box-msg"><b class="botilyn"> Botilyn:</b> No recuerdas tu contraseña?, digitala y te ayudare a recuperarla!</p>
       <form action="{{ route ('password.email')}}" method="post">
           @csrf
         <div class="input-group mb-3">
@@ -35,9 +37,9 @@
         @error('email')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        <div class="row">
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Recuperar Contraseña</button>
+        <div id="content-btn" >
+          <div id="content-btn2">
+            <button class="btn-ingresar" type="submit">Recuperar Contraseña</button>
           </div>
           <!-- /.col -->
         </div>
