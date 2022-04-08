@@ -32,6 +32,12 @@ class ClienteController extends Controller
     {
         return view('clientes.index');
     }
+
+    /* public function registros()
+    {
+        $clientes = Clientes::withCount(['ide'])->get();
+        return view('admin.index',compact('clientes'));
+    } */
     /**
      * Show the form for creating a new resource.
      *
@@ -51,7 +57,7 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'ide' => 'required|min:8|max:11',
+            'ide' => 'required|max:12',
             'nombre' => 'required|min:3|max:25',
             'apellido' => 'required|min:3|max:30',            
             'telefono' => 'required|min:7|max:12',            

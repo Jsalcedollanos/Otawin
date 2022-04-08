@@ -9,6 +9,7 @@ use yajra\Datatables\Datatables;
 
 class Cliente extends Model
 {
+    
     use HasFactory;
 
     protected $fillable = [
@@ -19,6 +20,13 @@ class Cliente extends Model
         'created_at' => 'datetime:Y-m-d H:i:s' ,
         'updated_at' => 'datetime:Y-m-d H:i:s' 
     ];
+
+    /* public function clients()
+    {
+        return $this->hasMany(Cliente::class);
+    } */
+    
+    
 }
 
 

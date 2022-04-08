@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cliente;
+use Response;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -13,8 +16,16 @@ class AdminController extends Controller
      */
     public function index()
     {
+        /* $clientes = Cliente::select(['ide','nombre'])
+        ->withCount('clients')
+        ->get()
+        ->toArray(); */
+        
+        /* return view('admin.index',compact('cont')); */
         return view('admin.index');
+        /* dd($clientes); */
     }
+
     public function __construct(){
 
 
