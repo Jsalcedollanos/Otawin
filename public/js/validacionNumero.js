@@ -1,4 +1,4 @@
-/* var separador = document.getElementById('valor'); */
+var separador = document.getElementById('totalV');
 
 separador.addEventListener('keyup', (e) => {
     var entrada = e.target.value.split('.').join('');

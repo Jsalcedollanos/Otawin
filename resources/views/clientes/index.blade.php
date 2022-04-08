@@ -51,12 +51,6 @@
     </thead>
 </table>
 
-<!-- resultado cantidad pacientes -->
-<div id="content-total">
-    <label for="">Cantidad de clientes registrados: </label>
-    <span id="total"></span>
-</div>
-<!-- fin -->
 
 @include('clientes.modal_pago_cliente')
 @include('clientes.modal_balance_pagos')
@@ -83,13 +77,7 @@
 
 <script>
 $(document).ready( function () {
-    var table = $('#clients').DataTable({
-        drawCallback: function () {
-            var api = this.api();
-            var total = api.rows().count();
-            $('#total').text(total);
-        },
-        
+    var table = $('#clients').DataTable({        
         "processing": true,
         "serverSide": true,
         "ajax": "{{route('clientes.index')}}",

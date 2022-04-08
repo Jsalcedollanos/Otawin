@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Pagos;
 use Response;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,14 +17,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        /* $clientes = Cliente::select(['ide','nombre'])
-        ->withCount('clients')
-        ->get()
-        ->toArray(); */
-        
-        /* return view('admin.index',compact('cont')); */
-        return view('admin.index');
-        /* dd($clientes); */
+        $contador = Cliente::select('ide')->count();
+        $contPagos = Pagos::select('n_factura')->count();
+        $sumPago = Pagos::select('valor')->sum('valor');
+        return view('admin.index',compact('contador','contPagos','sumPago'));
+
     }
 
     public function __construct(){

@@ -31,6 +31,9 @@
 @stop
 
 @section('content')
+
+    
+
     <p>Bienvenido a Otawin - Body Life.</p>
 
     <div class="row">
@@ -38,14 +41,30 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{$contPagos}}</h3>
 
-                <p>Nuevas Ordenes</p>
+                <p>Pagos</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/pagos/index" class="small-box-footer">Mas Informacion <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3 id="totalV" onkeypress="return valideKey(event);">{{$sumPago}}</h3>
+                <!-- <input id ="totalV" name="totalV" type="text" onkeypress="return valideKey(event);"> -->
+                <p>Vendido</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+                <!-- <input id="busqueda" type="date" class="form-control form-control-lg"> -->
+              </div>
+              <a href="/pagos/index" class="small-box-footer">Mas Informacion <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -53,29 +72,28 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>100<sup style="font-size: 20px">%</sup></h3>
+                <h3>0</h3>
 
-                <p>Bounce Rate</p>
+                <p>Clientes Vencidos</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">Mas Informacion <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-        
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-         
+                <h3>{{$contador}}</h3>
                 <p>Clientes registrados</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/clientes/index" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         
@@ -103,6 +121,8 @@
 @stop
 
 @section('js')
+
+<script src="/js/validacionNumero.js"></script>
     <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
