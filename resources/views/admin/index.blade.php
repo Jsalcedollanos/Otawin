@@ -27,7 +27,7 @@
 
   <link rel="stylesheet" href="/fonts/fontawesome-free-6.1.1-web/css/all.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <h1>Otawin</h1>
+    <h1>Otawin Body Life</h1>
 @stop
 
 @section('content')
