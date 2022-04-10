@@ -278,7 +278,7 @@ return [
         [
             'text'       => 'Seguimiento',
             'icon' => 'bi bi-binoculars-fill',
-            'url'        => '/',
+            'url'        => '/seguimiento/index',
         ],
 
         ['header' => 'Control'],
@@ -299,7 +299,7 @@ return [
         [
             'text'       => 'Seguimiento',
             'icon' => 'bi bi-emoji-heart-eyes-fill',
-            'url'        => '#',
+            'url'        => 'seguimiento/index',
         ],
 
         

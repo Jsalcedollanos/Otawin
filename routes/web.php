@@ -29,6 +29,10 @@ Route::get('/clientes/index', function () {
     return view('clientes.index');
 });
 
+Route::get('/seguimiento/index', function () {
+    return view('seguimiento.index');
+});
+
 Route::get('/pagos/index', function () {
     return view('pagos.index');
 });
@@ -75,6 +79,8 @@ Route::get('pagos/editar/{id}',[PagosController::class,'edit'])
 Route::get('/admin', [AdminController::class,'index'])
     -> middleware('auth.admin')
     -> name('admin.index');
+
+
 
 Route::get('/clientes', [ClienteController::class,'index'])
 -> middleware('auth.admin')
