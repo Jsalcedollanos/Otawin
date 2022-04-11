@@ -4,12 +4,11 @@
 
 @section('content_header')
 @livewireStyles
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/dist/main.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 @stop
 
 @section('content')
-<livewire:cliente-table theme="bootstrap-4"/>
+<livewire:pago-table/>
 
 @stop
 
@@ -20,5 +19,5 @@
 @stop
 
 @section('js')
-
+<script src="{{ mix('js/app.js') }}" defer></script>
 @stop
