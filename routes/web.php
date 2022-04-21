@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PagosController;
+use App\Http\Controllers\SeguimientoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,10 @@ use App\Http\Controllers\PagosController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('user-datatables', function () {
+    return view('seguimiento.index');
+});
 
 Route::get('/', function () {
     return view('auth.login');
@@ -73,8 +78,18 @@ Route::put('pagos/update/{id}',[PagosController::class,'update'])
 
 Route::get('pagos/editar/{id}',[PagosController::class,'edit'])
 ->name('pagos.editar');
+
+Route::get('pagos/seguimiento/{id}',[PagosController::class,'edit'])
+->name('pagos.editar');
 /* FIN DE RUTAS */
 
+/* RUTA DE SEGUIMIENTO */
+
+Route::post('seguimiento/index',[SeguimientoController::class,'store'])
+->name('seguimiento.create');
+
+
+/* FIN DE RUTA */
 
 Route::get('/admin', [AdminController::class,'index'])
     -> middleware('auth.admin')

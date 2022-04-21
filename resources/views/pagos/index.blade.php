@@ -25,7 +25,7 @@
 
 @include('pagos.modal_eliminar_pago')
 @include('pagos.modal_actualizar_pago')
-
+@include('pagos.modal_seguimiento')
 
     <table class="table table-dark table-striped " id="pagos">
     <thead>
@@ -42,7 +42,7 @@
             <th scope="col">Valor</th>                               
             <th scope="col">Editar</th>                                
             <th scope="col">Eliminar</th>                                                               
-            <th scope="col">Ver</th>                                                               
+            <th scope="col">Seguimiento</th>                                                               
         </tr>
     </thead>
 </table>
@@ -51,7 +51,7 @@
     <label id="tituloTotal" for="">Total vendido: </label>
     <span id="total"></span>
 </div>
-@include('pagos.modal_balance_pagos')
+
 @stop
 
 @section('css')
@@ -115,9 +115,9 @@ $(document).ready( function () {
             }},
 
             {data:'id', "render": function (data) {
-                var ide = data;
-            return "<button  id=\"" + data + "\" type=\"button\" name=\"ver\"  class=\"ver btn btn-info\"> <span class=\"bi bi-eye-fill\"></span></button>";
-            }}, 
+            return "<button id=\"" + data + "\" type=\"button\" name=\"btnSeguir\" class=\"btnSeguir btn btn-warning botonSeguir\"><span class=\"material-icons\">edit</span></button>";
+            }},
+
                    
         ]   
             
@@ -143,7 +143,7 @@ $(document).ready( function () {
                 error:function(data){
                     setTimeout(function(){
                         $('#editarModal').modal('hide');
-                        toastr.error('El cliente no se pudo eliminar', 'Atencion!', {timeOut: 5000});
+                        toastr.error('El pago no se pudo eliminar', 'Atencion!', {timeOut: 5000});
                         table.ajax.reload();
                         }, 200);
                 }
@@ -206,9 +206,62 @@ $(document).ready( function () {
     });
     /* EDITAR PAGO */
 });
+ /* GUARDAR SEGUIMIENTO */   
+ $('#seguimiento-cliente').submit(function(e){
+        e.preventDefault();    
+        let n_facturaSeg = $('#n_facturaSeg').val();
+        let idencliseg = $('#identificacionCliente').val();
+        let nombrecliseg = $('#nombreClienteSeg').val();
+        let apellidocliseg = $('#apellidoClienteSeg').val();
+        let fecha_inicioseg = $('#fecha_inicioSeg').val();
+        let fecha_finseg = $('#fecha_finSeg').val();
+        let diaseg = $('#diaSeg').val();        
+        $.ajax({
+            url: '{{route("pagos.create")}}',
+            type: "POST",
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            dataType: 'json',
+        data: 
+        {
+            n_factura:n_facturaSeg,
+            ide:idencliseg,
+            nombre:nombrecliseg,
+            apellido:apellidocliseg,
+            fecha_inicio:fecha_inicioseg,
+            fecha_fin:fecha_finseg,
+            dia:diaseg,            
+        },
+        
+        
+            success:function(data){
+                
+                setTimeout(function(){
+                  $("#seguimientoModal").find("input,textarea,select").val("");
+                  $('#seguimientoModal').modal('hide');
+                  toastr.success('se ha generado el seguimiento al pago', 'Generado!', {timeOut: 5000});
+                  table.ajax.reload();
+                }, 20);
+            },
+            
+            error:function(response){
+                toastr.error('Opps Algunos errores no permiten guardar el pago, Corrigelos!',{timeOut:5000});
+                $('#ideError').text(response.responseJSON.errors.ide);                                                  
+                $('#nombreError').text(response.responseJSON.errors.nombre);                                                  
+                $('#apellidoError').text(response.responseJSON.errors.apellido);                                                  
+                $('#valorError').text(response.responseJSON.errors.valor);
+                $('#metodoError').text(response.responseJSON.errors.metodo_pago);
+                $('#pagoError').text(response.responseJSON.errors.tipo_pago);
+                $('#inicioError').text(response.responseJSON.errors.fecha_inicio);
+                $('#finError').text(response.responseJSON.errors.fecha_fin);
+                                                                                                                  
+            }
+        });       
+});  
+/* FIN  GUARDAR SEGUIMIENTO  */  
 
-
-
+/* Fin */
 </script>
 <!-- LISTAR PAGO PARA EDITAR -->
 <script>
@@ -238,6 +291,32 @@ $(document).ready( function () {
 </script>
 
 <!-- FIN DE LISTAR PAGO -->
+
+<!-- LISTAR PAGO PARA SEGUIMIENTO EN MODAL VIA AJAX -->
+<script>
+    let id_pag;
+    $(document).ready(function(){
+        $(document).on('click','.btnSeguir',function(){
+            id_pag = $(this).attr('id');
+                $.ajax({
+                    url:"seguimiento/"+id_pag,
+                    type:'get',
+                success:function(data){
+                    $('#idPersona').val(data.id),
+                    $('#identificacionClienteSeg').val(data.ide),
+                    $('#n_facturaSeg').val(data.n_factura),
+                    $('#nombreClienteSeg').val(data.nombre),
+                    $('#apellidoClienteSeg').val(data.apellido),
+                    $('#fecha_inicioSeg').val(data.fecha_inicio),
+                    $('#fecha_finSeg').val(data.fecha_fin),
+                    $('#diaSeg').val(),                   
+                    $('#seguimientoModal').modal('show');
+                }
+            });
+        });
+    });
+</script>
+<!-- FIN -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>

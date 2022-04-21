@@ -21,10 +21,10 @@ class Cliente extends Model
         'updated_at' => 'datetime:Y-m-d H:i:s' 
     ];
 
-    /* public function clients()
+    public function seguimiento()
     {
-        return $this->hasMany(Cliente::class);
-    } */
+        return $this->belongsTo(Seguimiento::class);
+    }
     
     
 }

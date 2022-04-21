@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagos;
+use App\Models\Seguimientos;
 use App\Models\Cliente;
 use Response;
 
@@ -70,9 +71,53 @@ public function mostrar()
         $pago->metodo_pago = $request->post('metodo_pago');
         $pago->valor = $request->post('valor');        
         $pago->fecha_inicio = $request->post('fecha_inicio');        
-        $pago->fecha_fin = $request->post('fecha_fin');        
-        $pago->save();
-        return Response::json($pago);     
+        $pago->fecha_fin = $request->post('fecha_fin'); 
+        $pago->save();  
+
+        /* $seguimiento = new Seguimientos();
+        $seguimiento->n_factura = $request->post('n_factura');
+        $seguimiento->ide = $request->post('ide');
+        $seguimiento->nombre = $request->post('nombre');
+        $seguimiento->apellido = $request->post('apellido');
+        $seguimiento->dia = $request->post('dia')->default('1');
+        $seguimiento->fecha_inicio = $request->post('fecha_inicio');        
+        $seguimiento->fecha_fin = $request->post('fecha_fin');
+        $seguimiento->save(); */
+        
+        return Response::json($pago);  
+
+        /* DB::transaction(function () use ($request){
+            $pago = Pagos::create([
+                'n_factura' => $request['n_factura'],
+                'ide' => $request['ide'],
+                'nombre' => $request['nombre'],
+                'apellido' => $request['apellido'],
+                'fecha_inicio' => $request['fecha_inicio'],
+                'fecha_fin' => $request['fecha_fin'],
+                'tipo_pago' => $request['tipo_pago'],
+                'metodo_pago' => $request['metodo_pago'],
+                'valor' => $request['valor'],
+            ]);
+
+            $pago->seguimiento()->create([
+                'n_factura' => $request['n_factura'],
+                'ide' => $request['ide'],
+                'nombre' => $request['nombre'],
+                'apellido' => $request['apellido'],
+                'dia' => $request['dia'],
+                'fecha_inicio' => $request['fecha_inicio'],
+                'fecha_fin' => $request['fecha_fin']
+            ]);
+            return Response::json($pago);
+        }); */
+        
+       
+
+        
+
+
+
+           
     }
 
     /**

@@ -279,6 +279,8 @@ $('#editar-cliente').submit(function(e){
             fecha_fin:fecha_fin,
             valor:valor,            
         },
+        
+        
             success:function(data){
                 
                 setTimeout(function(){
