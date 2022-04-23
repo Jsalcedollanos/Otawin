@@ -10,7 +10,6 @@
 @stop
 
 @section('content')
-        <p id="v-total">Valorrr vendido:</p>
         <livewire:seguimiento-datatables
             searchable="nombre, ide, fecha_inicio"
             exportable

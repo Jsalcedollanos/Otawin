@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagos;
-use App\Models\Seguimientos;
+use App\Models\Seguimiento;
 use App\Models\Cliente;
 use Response;
+use Illuminate\Support\Facades\Storage;
 class SeguimientoController extends Controller
 {
     /**
@@ -28,7 +29,10 @@ class SeguimientoController extends Controller
     {
         //
     }
-
+        public function mostrar()
+    {
+        return view('seguimiento.index');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -37,16 +41,23 @@ class SeguimientoController extends Controller
      */
     public function store(Request $request)
     {
-        $seguimiento = new Seguimientos();
+
+        $request -> validate([
+            'ide' => 'required|min:8|max:11',
+            'nombre' => 'required|min:3|max:25',
+            'apellido' => 'required|min:3|max:30',                               
+            'fecha_inicio' => 'required',            
+            'fecha_fin' => 'required',            
+                    
+        ]);
+        $seguimiento = new Seguimiento();
         $seguimiento->n_factura = $request->post('n_factura');
         $seguimiento->ide = $request->post('ide');
         $seguimiento->nombre = $request->post('nombre');
         $seguimiento->apellido = $request->post('apellido');
-        $seguimiento->dia = $request->post('dia')->default('1');
         $seguimiento->fecha_inicio = $request->post('fecha_inicio');        
         $seguimiento->fecha_fin = $request->post('fecha_fin');
         $seguimiento->save();
-
         return Response::json($seguimiento);
     }
 

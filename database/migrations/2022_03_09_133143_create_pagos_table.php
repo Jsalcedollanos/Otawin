@@ -25,7 +25,9 @@ class CreatePagosTable extends Migration
 	        $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('estado')->default('activo');
-            $table->foreign('ide')->references('ide')->on('clientes');
+            $table->foreign('ide')->references('ide')->on('clientes')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             $table->timestamps();
         });
     }

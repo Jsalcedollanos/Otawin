@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagos;
-use App\Models\Seguimientos;
+use App\Models\Seguimiento;
 use App\Models\Cliente;
 use Response;
-
+use Illuminate\Support\Facades\Storage;
 
 class PagosController extends Controller
 {

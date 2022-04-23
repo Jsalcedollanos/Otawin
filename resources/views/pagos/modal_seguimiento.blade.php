@@ -16,13 +16,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+
+        <h5>¿Esta seguro de generar el seguimiento de: <br>
+        <span id="nombre" name="nombre"></span>
+        <span id="apellido" name="apellido"></span>
+        <span>con modalidad de pago </span>
+        <span id="modalidad" name="modalidad"></span>
+      ?</h5>
+      
+
         <form id="seguimiento-cliente" name="seguimiento-cliente"  action="{{route('seguimiento.create')}}">
-        @csrf         
-                <?php
-                  $caracteres = "1234567890";
-                  $desordenada = str_shuffle($caracteres);
-                  $CH = substr($desordenada, 1, 4);
-                ?>
+        @csrf     
+        
+        
+
+          <div hidden>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">N°Factura</span>
                 <input value="" readonly id="n_facturaSeg" name="n_facturaSeg" class="form-control form-control-lg" type="text" min="0" placeholder="">
@@ -51,28 +59,24 @@
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Fecha inicio</span>   
-                <input readonly type="date"  value="" id="fecha_inicioSeg" name="fecha_inicioSeg" class="form-control form-control-lg" tabindex="3">
+                <input readonly type="date"  value="" id="fecha_inicioSeg" name="fecha_inicioSeg" class="form-control form-control-lg" >
                 <span class="text-danger" id="inicioError"></span><br>
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Fecha fin</span>
-                <input readonly type="date" value="" id="fecha_finSeg" name="fecha_finSeg" class="form-control form-control-lg" tabindex="4">
+                <input readonly type="date" value="" id="fecha_finSeg" name="fecha_finSeg" class="form-control form-control-lg">
                 <span class="text-danger" id="finError"></span><br>
               </div>
-            
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Dia</span>   
-                <input  maxlength="2" id="diaSeg" name="diaSeg" class="form-control form-control-lg" type="text">
-                <span class="text-danger" id="diaError"></span>
-              </div>
 
+            
+          </div>    
         
                 <br>
                   </div>
                   <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" tabindex="2">Cancelar</button>
+        <button type="submit" class="btn btn-primary" tabindex="3">Generar</button>
       </div>
     </div>
         </form>

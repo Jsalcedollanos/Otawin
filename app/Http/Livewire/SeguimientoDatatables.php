@@ -16,7 +16,7 @@ class SeguimientoDatatables extends LivewireDatatable
     public function columns()
     {
         return [
-            NumberColumn::delete('id')
+            NumberColumn::name('id')
             ->label('ID'),
 
             NumberColumn::name('n_factura')
@@ -32,6 +32,22 @@ class SeguimientoDatatables extends LivewireDatatable
             
             Column::name('apellido')
                 ->label('Apellido')
+                ->editable(),
+
+            Column::name('dia')
+                ->label('Dia')
+                ->editable(),
+
+            Column::name('fecha_inicio')
+                ->label('Fecha Inicio')
+                ->editable(),
+
+            Column::name('fecha_fin')
+                ->label('Fecha Fin')
+                ->editable(),
+
+            Column::name('estado')
+                ->label('Estado')
                 ->editable(),
         ];
     }

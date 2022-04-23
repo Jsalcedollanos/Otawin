@@ -105,3 +105,6 @@ Route::get('/pagos', [PagosController::class,'index'])
 -> middleware('auth.admin')
 -> name('pagos.index');
 
+Route::get('/seguimientos', [SeguimientoController::class,'index'])
+-> middleware('auth.admin')
+-> name('seguimiento.index');

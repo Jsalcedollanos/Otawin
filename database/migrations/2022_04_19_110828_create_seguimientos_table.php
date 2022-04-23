@@ -19,7 +19,7 @@ class CreateSeguimientosTable extends Migration
             $table->integer('ide');
             $table->string('nombre',40);
             $table->string('apellido',40);
-            $table->integer('dia');
+            $table->integer('dia')->default(1);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('estado')->default('activo');

@@ -12,12 +12,17 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <h1>Pagos de Body Life</h1>
 
-        <div id="menu">
+    <div id="menu">
             <div class="btnBalance">
                 <i id="btnBalance" data-toggle="modal"  data-target="#balanceModal" type="button"class="fas fa-balance-scale"></i>
                 <p>Ver Balance</p>
             </div>
-        </div>
+    </div>
+    
+    <div id="content-total">
+            <label id="tituloTotal" for="">Total vendido: </label>
+        <span id="total"></span>
+    </div>
 
 @stop
 
@@ -46,11 +51,6 @@
         </tr>
     </thead>
 </table>
-
-<div id="content-total">
-    <label id="tituloTotal" for="">Total vendido: </label>
-    <span id="total"></span>
-</div>
 
 @stop
 
@@ -205,19 +205,20 @@ $(document).ready( function () {
 
     });
     /* EDITAR PAGO */
-});
+
+
  /* GUARDAR SEGUIMIENTO */   
  $('#seguimiento-cliente').submit(function(e){
         e.preventDefault();    
         let n_facturaSeg = $('#n_facturaSeg').val();
-        let idencliseg = $('#identificacionCliente').val();
+        let idencliseg = $('#identificacionClienteSeg').val();
         let nombrecliseg = $('#nombreClienteSeg').val();
         let apellidocliseg = $('#apellidoClienteSeg').val();
         let fecha_inicioseg = $('#fecha_inicioSeg').val();
         let fecha_finseg = $('#fecha_finSeg').val();
         let diaseg = $('#diaSeg').val();        
         $.ajax({
-            url: '{{route("pagos.create")}}',
+            url: '{{route("seguimiento.create")}}',
             type: "POST",
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -246,22 +247,21 @@ $(document).ready( function () {
             },
             
             error:function(response){
-                toastr.error('Opps Algunos errores no permiten guardar el pago, Corrigelos!',{timeOut:5000});
+                toastr.error('Opps Algunos errores no permiten guardar el seguimiento, Corrigelos!',{timeOut:5000});
                 $('#ideError').text(response.responseJSON.errors.ide);                                                  
                 $('#nombreError').text(response.responseJSON.errors.nombre);                                                  
                 $('#apellidoError').text(response.responseJSON.errors.apellido);                                                  
-                $('#valorError').text(response.responseJSON.errors.valor);
-                $('#metodoError').text(response.responseJSON.errors.metodo_pago);
-                $('#pagoError').text(response.responseJSON.errors.tipo_pago);
                 $('#inicioError').text(response.responseJSON.errors.fecha_inicio);
-                $('#finError').text(response.responseJSON.errors.fecha_fin);
-                                                                                                                  
+                $('#finError').text(response.responseJSON.errors.fecha_fin);                                                                                                                  
             }
         });       
 });  
 /* FIN  GUARDAR SEGUIMIENTO  */  
 
 /* Fin */
+
+});
+
 </script>
 <!-- LISTAR PAGO PARA EDITAR -->
 <script>
@@ -302,10 +302,12 @@ $(document).ready( function () {
                     url:"seguimiento/"+id_pag,
                     type:'get',
                 success:function(data){
-                    $('#idPersona').val(data.id),
                     $('#identificacionClienteSeg').val(data.ide),
                     $('#n_facturaSeg').val(data.n_factura),
                     $('#nombreClienteSeg').val(data.nombre),
+                    $('#nombre').text(data.nombre),
+                    $('#apellido').text(data.apellido),
+                    $('#modalidad').text(data.tipo_pago),
                     $('#apellidoClienteSeg').val(data.apellido),
                     $('#fecha_inicioSeg').val(data.fecha_inicio),
                     $('#fecha_finSeg').val(data.fecha_fin),
