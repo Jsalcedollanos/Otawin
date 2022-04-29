@@ -19,6 +19,8 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::select('id','ide','nombre','apellido','direccion','telefono','correo','created_at')->get();
         return datatables()->of($cliente)->toJson();
+
+        
     }
     public function __construct(){
 
@@ -26,6 +28,14 @@ class ClienteController extends Controller
         $this->middleware('auth.admin');
 
 
+    }
+
+    public function cantClientes()
+    {
+        $contador = Cliente::select('ide')->count();
+        $contPagos = Pagos::select('n_factura')->count();
+        $sumPago = Pagos::select('valor')->sum('valor');
+        return view('clientes.index',compact('contador','contPagos','sumPago'));
     }
 
     public function mostrar()

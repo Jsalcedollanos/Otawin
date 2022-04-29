@@ -88,6 +88,14 @@ Route::get('pagos/seguimiento/{id}',[PagosController::class,'edit'])
 Route::post('seguimiento/index',[SeguimientoController::class,'store'])
 ->name('seguimiento.create');
 
+Route::get('seguimiento/eliminar/{id}',[SeguimientoController::class,'destroy'])
+->name('seguimiento.eliminar');
+
+Route::put('seguimiento/update/{id}',[SeguimientoController::class,'update'])
+->name('seguimiento.update');
+
+Route::get('seguimiento/editar/{id}',[SeguimientoController::class,'edit'])
+->name('seguimiento.editar');
 
 /* FIN DE RUTA */
 

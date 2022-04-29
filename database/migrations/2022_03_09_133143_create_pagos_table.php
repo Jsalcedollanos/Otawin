@@ -16,7 +16,7 @@ class CreatePagosTable extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
             $table->integer('n_factura');
-            $table->integer('ide');
+            $table->bigInteger('ide');
             $table->string('nombre',40);
             $table->string('apellido',40);
             $table->string('metodo_pago',20);
@@ -24,7 +24,7 @@ class CreatePagosTable extends Migration
             $table->integer('valor');
 	        $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->string('estado')->default('activo');
+            $table->integer('estado')->default('1');
             $table->foreign('ide')->references('ide')->on('clientes')
             ->onDelete('cascade')
             ->onUpdate('cascade');

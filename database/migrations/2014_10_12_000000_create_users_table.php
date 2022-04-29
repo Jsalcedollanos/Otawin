@@ -25,6 +25,19 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
+        /* DB::table("users")
+            ->insert([
+                "name" => "jhonny",
+                "email" => "jhonny_salcedo21@hotmail.com",
+                "password" => "jh0nny1994",
+            ]);
+
+            DB::table("users")
+            ->insert([
+                "name" => "lynwood",
+                "email" => "lsalcedo122@gmail.com",
+                "password" => "Lw72176393",
+            ]); */
     }
 
     /**

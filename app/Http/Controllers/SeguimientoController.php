@@ -17,7 +17,8 @@ class SeguimientoController extends Controller
      */
     public function index()
     {
-        
+        $seguimiento = Seguimiento::select('id','n_factura','ide','nombre','apellido','dia','fecha_inicio','fecha_fin','estado')->get();
+        return datatables()->of($seguimiento)->toJson();
     }
 
     /**
@@ -94,7 +95,12 @@ class SeguimientoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $seguimiento = Seguimiento::find($id);
+        $seguimiento ->fill($request->all());        
+        $seguimiento->save();
+        return response()->json([
+            "mensaje" => "listo"
+        ]);
     }
 
     /**
@@ -105,6 +111,9 @@ class SeguimientoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Seguimiento::find($id)->delete($id);
+        return response()->json([
+        'success' => 'Record deleted successfully!'
+        ]); 
     }
 }

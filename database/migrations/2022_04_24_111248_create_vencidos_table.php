@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSeguimientosTable extends Migration
+class CreateVencidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateSeguimientosTable extends Migration
      */
     public function up()
     {
-        Schema::create('seguimientos', function (Blueprint $table) {
+        Schema::create('Vencido', function (Blueprint $table) {
             $table->id();
             $table->integer('n_factura');
-            $table->bigInteger('ide');
+            $table->Biginteger('ide');
             $table->string('nombre',40);
             $table->string('apellido',40);
-            $table->integer('dia')->default(1);
-            $table->date('fecha_inicio');
+            $table->string('metodo_pago',20);
+	        $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->string('estado')->default('activo');
+            $table->integer('estado')->default('2');
             $table->foreign('ide')->references('ide')->on('pagos')
             ->onDelete('cascade')
             ->onUpdate('cascade');
@@ -37,6 +37,6 @@ class CreateSeguimientosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seguimientos');
+        Schema::dropIfExists('Vencido');
     }
 }

@@ -12,3 +12,71 @@
 #content-total{
     font-size: 20pt;
 }
+
+#busqueda-avanzada .titulo-filtros{
+    color: blueviolet;
+    font-size: 20px;
+}
+
+#busqueda-avanzada .filtros input{
+    color: blueviolet;
+    font-size: 20px;
+}
+
+#busqueda-avanzada .filtros span{
+    color: blueviolet;
+}
+
+#tarjetas{
+    justify-content: center;
+}
+
+#tarjetas .card-pagos{
+    background: #8a2be2;
+}
+
+#tarjetas .card-vendido{
+    background: rgb(179, 0, 170);
+}
+
+
+
+#clients .btnPago{
+    background-color: #8a2be2;
+}
+
+#pagos{
+    color: #8a2be2;
+    text-align: center;
+}
+
+#clients{
+    color: #8a2be2;
+    text-align: center;
+}
+
+#clients tfoot{
+    color: #2be2d3;
+    text-align: center;
+}
+
+#pagos tfoot{
+    color: #2be2d3;
+    text-align: center;
+}
+
+#seguimiento tfoot{
+    color: #2be2d3;
+    text-align: center;
+    width: 10px;
+}
+
+#pagos .btnSeguir{
+    background-color: #8a2be2;
+}
+
+#seguimiento{
+    color: #8a2be2;
+    text-align: center;
+}
+

@@ -11,12 +11,47 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <h1>Ingreso de clientes Body Life</h1>
 @stop
 @section('content')
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+<div id="tarjetas" class="row">
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box card-pagos">
+              <div class="inner">
+                <h3>0</h3>
+
+                <p>Clientes Vencidos</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mas Informacion <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box card-vendido">
+              <div class="inner">
+                <h3 id="total-clientes"></h3>
+                <p>Clientes registrados</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="/clientes/index" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+
         <div id="menu">
             <div class="btnGuardar">
                 <i id="btnGuardar" type="button" class="fa-solid fa-person-circle-plus"></i>
@@ -28,28 +63,62 @@
                 <p>Ver Balance</p>
             </div> 
         </div> 
-
+        <div id="busqueda-avanzada">
+            <p class="titulo-filtros">Busqueda Avanzada</p>
+            <div class="input-group mb-3 filtros" >
+                <span class="input-group-text" id="basic-addon1">Fecha Ingreso</span>
+                <input type="date" class="form-control filtro_fecha" placeholder="Buscar por fecha" data-column="7">
+                <span class="input-group-text" onkeypress="return validaNumericos(event);" id="basic-addon2">ID</span>
+                <input type="text" class="form-control filtro_ide" placeholder="Buscar por identificacion" data-column="1">
+                <span class="input-group-text" id="basic-addon2">Nombre</span>
+                <input type="text" class="form-control filtro_nombre" placeholder="Buscar por Nombre" data-column="3">
+            </div>
+        </div>
+        
+        
 @include('clientes.modal_add_cliente')
 @include('clientes.modal_eliminar_cliente')
 @include('clientes.modal_actualizar_cliente')
 
-    <table class="table table-dark table-striped " id="clients">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Correo</th>                 
-            <th scope="col">Fecha de ingreso</th>                                                               
-            <th scope="col">Editar</th>                                
-            <th scope="col">Eliminar</th>                                
-            <th scope="col">Pago</th>                                
-        </tr>
-    </thead>
-</table>
+
+    <table class="table table-dark table-striped" id="clients"> 
+        <thead>
+            <tr>
+                <th scope="row">N°</th>
+                <th scope="row">ID</th>
+                <th scope="row">Nombre</th>
+                <th scope="row">Apellido</th>
+                <th scope="row">Direccion</th>
+                <th scope="row">Telefono</th>
+                <th scope="row">Correo</th>                 
+                <th scope="row">Ingreso</th>                                                               
+                <th scope="row">Editar</th>                                
+                <th scope="row">Eliminar</th>                                
+                <th scope="row">Pago</th>                                
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+                <th scope="row">N°</th>
+                <th scope="row">ID</th>
+                <th scope="row">Nombre</th>
+                <th scope="row">Apellido</th>
+                <th scope="row">Direccion</th>
+                <th scope="row">Telefono</th>
+                <th scope="row">Correo</th>                 
+                <th scope="row">Ingreso</th>                                                               
+                <th scope="row">Editar</th>                                
+                <th scope="row">Eliminar</th>                                
+                <th scope="row">Pago</th>                                
+            </tr>
+        </tfoot>
+        <!-- <tfoot>
+            <td>
+                <input type="text" class="form-control filtro_input" placeholder="Buscar por fecha" data-column="7">
+            </td>
+        </tfoot> -->
+    </table>
 
 
 @include('clientes.modal_pago_cliente')
@@ -71,41 +140,74 @@
 <!-- Fin Boostrap 5 -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+
 <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>  
 <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <!-- Validacion solo numero -->
-
 <script>
 $(document).ready( function () {
-    var table = $('#clients').DataTable({        
-        "processing": true,
-        "serverSide": true,
-        "ajax": "{{route('clientes.index')}}",
-        "columns": [
-            {data: 'id'},
-            {data: 'ide'},
-            {data: 'nombre'},
-            {data: 'apellido'},
-            {data: 'direccion'},
-            {data: 'telefono'},
-            {data: 'correo'},
-            {data: 'created_at'},
-            {data:'id', "render": function (data) {
-            return "<button id=\"" + data + "\" type=\"button\" name=\"btnEditar\" class=\"btnEditar btn btn-warning botonEditar\"><span class=\"material-icons\">edit</span></button>";
-            }},
-
-            {data:'id', "render": function (data) {
-                var ide = data;
-            return "<button  id=\"" + data + "\" type=\"button\" name=\"eliminar\"  class=\"eliminar btn btn-warning\"> <span class=\"material-icons\">delete</span></button>";
-            }},
-
-            {data:'id', "render": function (data) {
-            return "<button id=\"" + data + "\" type=\"button\" name=\"btnPago\" class=\"btnPago btn btn-primary\"><span class=\"bi bi-currency-dollar\"></span></button>";
-            }},
-        ]
-    });
- 
+    jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
+    return this.flatten().reduce( function ( a, b ) {
+      if ( typeof a === 'string' ) {
+        a = a.replace(/[^\d.-]/g, '') * 1;
+      }
+      if ( typeof b === 'string' ) {
+        b = b.replace(/[^\d.-]/g, '') * 1;
+      }
+      return a + b;
+    }, 0);
+  });
     
+        var table = $('#clients').DataTable({   
+            drawCallback: function () {
+            var api = this.api();
+            var total = api.column( 1, {"filter":"applied"}).data().count();
+            $('#total-clientes').text(total);
+        },     
+            "ajax": "{{route('clientes.index')}}",
+            "columns": [
+                {data: 'id'},
+                {data: 'ide'},
+                {data: 'nombre'},
+                {data: 'apellido'},
+                {data: 'direccion'},
+                {data: 'telefono'},
+                {data: 'correo'},
+                {data: 'created_at'},
+                {data:'id', "render": function (data) {
+                return "<button id=\"" + data + "\" type=\"button\" name=\"btnEditar\" class=\"btnEditar btn btn-info botonEditar\"><span class=\"material-icons\">edit</span></button>";
+                }},
+
+                {data:'id', "render": function (data) {
+                    var ide = data;
+                return "<button  id=\"" + data + "\" type=\"button\" name=\"eliminar\"  class=\"btnEliminar btn btn-danger\"> <span class=\"material-icons\">delete</span></button>";
+                }},
+
+                {data:'id', "render": function (data) {
+                return "<button id=\"" + data + "\" type=\"button\" name=\"btnPago\" class=\"btnPago btn btn-primary\"><span class=\"bi bi-currency-dollar\"></span></button>";
+                }},
+            ]
+        });
+    
+        /* BUSQUEDA AVANZADA */
+        $('.filtro_fecha').keyup(function(){
+            table.column($(this).data('column'))
+            .search($(this).val())
+            .draw();
+        });
+
+        $('.filtro_ide').keyup(function(){
+            table.column($(this).data('column'))
+            .search($(this).val())
+            .draw();
+        });
+
+        $('.filtro_nombre').keyup(function(){
+            table.column($(this).data('column'))
+            .search($(this).val())
+            .draw();
+        });
+        /* FIN DE BUSQUEDA AVANZADA */
 
 
     
@@ -175,7 +277,7 @@ $('#btnGuardar').on('click',function(){
 });
 /* Eliminar */
 var id_cliente;
-$(document).on('click','.eliminar',function(){
+$(document).on('click','.btnEliminar',function(){
     var id_cliente = $(this).attr('id');
     $('#eliminarModal').modal('show');
     $('#btnEliminar').on('click',function(){
@@ -363,5 +465,6 @@ $(document).ready(function(){
 </script>
     <script src="/js/numeroRandom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="/js/validaNumericos.js"></script>
 @stop

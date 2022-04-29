@@ -8,7 +8,7 @@ class Seguimiento extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'n_factura','ide','nombre','apellido','dia','fecha_inicio','fecha_fin'
+        'id','n_factura','ide','nombre','apellido','dia','fecha_inicio','fecha_fin','estado'
     ];
 
     protected $casts = [

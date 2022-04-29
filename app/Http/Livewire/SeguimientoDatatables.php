@@ -28,27 +28,36 @@ class SeguimientoDatatables extends LivewireDatatable
 
             Column::name('nombre')
                 ->label('Nombre')
-                ->editable(),
+                ->searchable(),
+                
             
             Column::name('apellido')
-                ->label('Apellido')
-                ->editable(),
+                ->label('Apellido'),
+                
 
             Column::name('dia')
                 ->label('Dia')
                 ->editable(),
 
             Column::name('fecha_inicio')
-                ->label('Fecha Inicio')
-                ->editable(),
+                ->label('Fecha Inicio'),
+                
 
             Column::name('fecha_fin')
-                ->label('Fecha Fin')
-                ->editable(),
+                ->label('Fecha Fin'),
+                
 
             Column::name('estado')
-                ->label('Estado')
-                ->editable(),
+                ->label('Estado'),
+
+
+            Column::delete()
+                ->label('Eliminar')
+                ->alignCenter(),
+
+            (new LabelColumn())
+            ->label('Ver')
+            ,
         ];
     }
 }

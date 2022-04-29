@@ -10,20 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <h1>Pagos de Body Life</h1>
-
-    <div id="menu">
-            <div class="btnBalance">
-                <i id="btnBalance" data-toggle="modal"  data-target="#balanceModal" type="button"class="fas fa-balance-scale"></i>
-                <p>Ver Balance</p>
-            </div>
-    </div>
-    
-    <div id="content-total">
-            <label id="tituloTotal" for="">Total vendido: </label>
-        <span id="total"></span>
-    </div>
-
+<link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 @stop
 
 @section('content')
@@ -32,16 +19,68 @@
 @include('pagos.modal_actualizar_pago')
 @include('pagos.modal_seguimiento')
 
+<h3>Pagos de Body Life</h3><br>
+        <div id="tarjetas" class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box card-pagos">
+                    <div class="inner">
+                        <h3 id="total-p">??</h3>
+                        <p>Pagos</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="/pagos/index" class="small-box-footer">Mas Informacion <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box card-vendido">
+                    <div class="inner">
+                        <h3 id="total-pagos">??</h3>
+                        <p>Total Vendido</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="/pagos/index" class="small-box-footer">Mas Informacion <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>   
+        </div>
+
+
+
+    <!-- <div id="menu">
+            <div class="btnBalance">
+                <i id="btnBalance" data-toggle="modal"  data-target="#balanceModal" type="button"class="fas fa-balance-scale"></i>
+                <p>Ver Balance</p>
+            </div>
+    </div> -->
+    
+        <div id="busqueda-avanzada">
+            <p class="titulo-filtros">Busqueda Avanzada</p>
+            <div class="input-group mb-3 filtros">
+                <span class="input-group-text" id="basic-addon1">Fecha Ingreso</span>
+                <input type="date" class="form-control filtro_fecha" placeholder="Buscar por fecha" data-column="7">
+                <span class="input-group-text" id="basic-addon2">ID</span>
+                <input type="text" class="form-control filtro_ide"  onkeypress="return validaNumericos(event);" placeholder="Buscar por identificacion" data-column="1">
+                <span class="input-group-text" id="basic-addon2">Nombre</span>
+                <input type="text" class="form-control filtro_nombre" placeholder="Buscar por Nombre" data-column="3">
+            </div>
+        </div>
+
     <table class="table table-dark table-striped " id="pagos">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">N°</th>
             <th scope="col">Ide</th>
             <th scope="col">N_factura</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>                 
             <th scope="col">M-pago</th>                 
-            <th scope="col">T-pago</th>                
+            <th scope="col">Tpago</th>                
             <th scope="col">Ingreso</th>                                
             <th scope="col">Final</th> 
             <th scope="col">Valor</th>                               
@@ -50,8 +89,26 @@
             <th scope="col">Seguimiento</th>                                                               
         </tr>
     </thead>
-</table>
 
+    <tfoot>
+        <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Ide</th>
+            <th scope="col">N_factura</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>                 
+            <th scope="col">M-pago</th>                 
+            <th scope="col">Tpago</th>                
+            <th scope="col">Ingreso</th>                                
+            <th scope="col">Final</th> 
+            <th scope="col">Valor</th>                               
+            <th scope="col">Editar</th>                                
+            <th scope="col">Eliminar</th>                                                               
+            <th scope="col">Seguimiento</th>                                                               
+        </tr>
+    </tfoot>
+</table>
+<script src="/js/validacionNumero.js"></script>
 @stop
 
 @section('css')
@@ -85,15 +142,19 @@ $(document).ready( function () {
     }, 0);
   });
 
-    var table = $('#pagos').DataTable({
+        var table = $('#pagos').DataTable({
         drawCallback: function () {
             var api = this.api();
             var total = api.column( 9, {"filter":"applied"}).data().sum();
-            $('#total').text(total);
-        },
+            $('#total-pagos').text(total);
+
+            var api2 = this.api();
+            var total2 = api2.column( 2, {"filter":"applied"}).data().count();
+            $('#total-p').text(total2);
+            
+        },   
         
         "ajax": "{{route('pagos.index')}}", 
-            
         "columns": [
             {data: 'id'},
             {data: 'ide'},
@@ -106,12 +167,12 @@ $(document).ready( function () {
             {data: 'fecha_fin'},
             {data: 'valor'},
             {data:'id', "render": function (data) {
-            return "<button id=\"" + data + "\" type=\"button\" name=\"btnEditar\" class=\"btnEditar btn btn-warning botonEditar\"><span class=\"material-icons\">edit</span></button>";
+            return "<button id=\"" + data + "\" type=\"button\" name=\"btnEditar\" class=\"btnEditar btn btn-info botonEditar\"><span class=\"material-icons\">edit</span></button>";
             }},
 
             {data:'id', "render": function (data) {
                 var ide = data;
-            return "<button  id=\"" + data + "\" type=\"button\" name=\"eliminar\"  class=\"eliminar btn btn-warning\"> <span class=\"material-icons\">delete</span></button>";
+            return "<button  id=\"" + data + "\" type=\"button\" name=\"eliminar\"  class=\"btnEliminar btn btn-danger\"> <span class=\"material-icons\">delete</span></button>";
             }},
 
             {data:'id', "render": function (data) {
@@ -119,14 +180,34 @@ $(document).ready( function () {
             }},
 
                    
-        ]   
-            
+        ]        
     });
-        
+    
+        /* BUSQUEDA AVANZADA */
+        $('.filtro_fecha').keyup(function(){
+            table.column($(this).data('column'))
+            .search($(this).val())
+            .draw();
+        });
+
+        $('.filtro_ide').keyup(function(){
+            table.column($(this).data('column'))
+            .search($(this).val())
+            .draw();
+        });
+
+        $('.filtro_nombre').keyup(function(){
+            table.column($(this).data('column'))
+            .search($(this).val())
+            .draw();
+        });
+        /* FIN DEL BLOQUE DE BUSQUEDA AVANZADA */
+
+
 
     /* ELIMINAR PAGO */
     var id_pago;
-    $(document).on('click','.eliminar',function(){
+    $(document).on('click','.btnEliminar',function(){
         var id_pago = $(this).attr('id');
         $('#eliminarModal').modal('show');
         $('#btnEliminar').on('click',function(){
@@ -142,7 +223,7 @@ $(document).ready( function () {
                 },
                 error:function(data){
                     setTimeout(function(){
-                        $('#editarModal').modal('hide');
+                        $('#eliminarModal').modal('hide');
                         toastr.error('El pago no se pudo eliminar', 'Atencion!', {timeOut: 5000});
                         table.ajax.reload();
                         }, 200);
@@ -323,5 +404,7 @@ $(document).ready( function () {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
-
+    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="/js/separadorDecimal.js"></script>
+    <script src="/js/validaNumericos.js"></script>
 @stop
