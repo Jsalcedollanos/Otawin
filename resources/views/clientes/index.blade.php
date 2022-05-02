@@ -71,7 +71,7 @@
                 <span class="input-group-text" onkeypress="return validaNumericos(event);" id="basic-addon2">ID</span>
                 <input type="text" class="form-control filtro_ide" placeholder="Buscar por identificacion" data-column="1">
                 <span class="input-group-text" id="basic-addon2">Nombre</span>
-                <input type="text" class="form-control filtro_nombre" placeholder="Buscar por Nombre" data-column="3">
+                <input type="text" class="form-control filtro_nombre" placeholder="Buscar por Nombre" data-column="2">
             </div>
         </div>
         
@@ -84,33 +84,33 @@
     <table class="table table-dark table-striped" id="clients"> 
         <thead>
             <tr>
-                <th scope="row">N°</th>
-                <th scope="row">ID</th>
-                <th scope="row">Nombre</th>
-                <th scope="row">Apellido</th>
-                <th scope="row">Direccion</th>
-                <th scope="row">Telefono</th>
-                <th scope="row">Correo</th>                 
-                <th scope="row">Ingreso</th>                                                               
-                <th scope="row">Editar</th>                                
-                <th scope="row">Eliminar</th>                                
-                <th scope="row">Pago</th>                                
+                <th>N°</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th class="fila-correo">Correo</th>                 
+                <th>Ingreso</th>                                                               
+                <th>Editar</th>                                
+                <th>Eliminar</th>                                
+                <th>Pago</th>                                
             </tr>
         </thead>
 
         <tfoot>
             <tr>
-                <th scope="row">N°</th>
-                <th scope="row">ID</th>
-                <th scope="row">Nombre</th>
-                <th scope="row">Apellido</th>
-                <th scope="row">Direccion</th>
-                <th scope="row">Telefono</th>
-                <th scope="row">Correo</th>                 
-                <th scope="row">Ingreso</th>                                                               
-                <th scope="row">Editar</th>                                
-                <th scope="row">Eliminar</th>                                
-                <th scope="row">Pago</th>                                
+                <th>N°</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Correo</th>                 
+                <th>Ingreso</th>                                                               
+                <th>Editar</th>                                
+                <th>Eliminar</th>                                
+                <th>Pago</th>                                
             </tr>
         </tfoot>
         <!-- <tfoot>

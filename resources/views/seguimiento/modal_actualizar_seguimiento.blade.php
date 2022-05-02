@@ -16,10 +16,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
+      <h5>¿Esta seguro de generar el seguimiento de: <br>
+        <span id="nombre" name="nombre"></span>
+      ?</h5>  
+      
         <form id="editar-seguimiento" name="editar-seguimiento">
         @csrf
-        <!-- <p>Añadir dia a:<span id="nombre" name="nombre"></span></p> -->
+        
         
         <input hidden type="text" readonly value="" id="idPersona" name="idPersona"  class="form-control form-control-lg">
         <br>

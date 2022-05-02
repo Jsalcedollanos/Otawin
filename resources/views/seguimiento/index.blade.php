@@ -248,7 +248,7 @@
                     type:'get',
                 success:function(data){
                     $('#idPersona').val(data.id),
-                    $('#nombre').val(data.nombre),
+                    $('#nombre').text(data.nombre),
                     $('#dia').val(data.dia),
                     $('#actualizarModal').modal('show');
                 }

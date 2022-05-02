@@ -46,12 +46,21 @@
 }
 
 #pagos{
-    color: #8a2be2;
+    color: #70fddf;
     text-align: center;
 }
 
 #clients{
-    color: #8a2be2;
+    color: #70fddf;
+    text-align: center;
+}
+
+#clients .fila-correo{
+    height: 2px;
+}
+
+#seguimiento{
+    color: #70fddf;
     text-align: center;
 }
 
@@ -73,10 +82,5 @@
 
 #pagos .btnSeguir{
     background-color: #8a2be2;
-}
-
-#seguimiento{
-    color: #8a2be2;
-    text-align: center;
 }
 
